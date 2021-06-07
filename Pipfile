@@ -4,9 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+discord = "*"
+demoji = "*"
+python-dotenv = "*"
 
 [dev-packages]
-black = "*"
+black = "21.5b2"
 isort = "*"
 flake8 = "*"
 pytest = "*"
@@ -14,3 +17,6 @@ pytest-cov = "*"
 
 [requires]
 python_version = "3.9"
+
+[pipenv]
+allow_prereleases = true
