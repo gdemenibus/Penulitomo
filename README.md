@@ -10,4 +10,19 @@ A yaml file is used for config
 - [ ] Abstract away what is being reacted to (Reaction files can be changed)
 - [ ] Implement a config file
 
+## Commands for Development:
+Code formating:
+```
+pipenv run black
+pipenv run isort
+```
+Style Enforcement:
+```
+pipenv run flake8
+```
+Testing:
+```
+pipenv run pytest --cov
+```
+
 
