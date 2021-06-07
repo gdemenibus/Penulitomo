@@ -1,4 +1,4 @@
-# Penulitomo
+# Penultimo
 The objective of this bot is to handle role assignment as a reaction to
 certain words. 
 A generic implementation is provided, with an editable config file that can be
