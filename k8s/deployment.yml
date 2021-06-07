@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: penultimo
+  labels:
+    app: penultimo
+    keel.sh/policy: force
+spec:
+  # Multiple replicas are _not_ supported
+  replicas: 1
+  selector:
+    matchLabels:
+      app: penultimo
+  template:
+    metadata:
+      labels:
+        app: penultimo
+    spec:
+      containers:
+      - name: penultimo
+        image: registry.xirion.net/library/penultimo
+        env:
+          - name: DISCORD_TOKEN
+            value: CHANGE_ME
