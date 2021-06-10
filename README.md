@@ -6,8 +6,9 @@ loaded.
 A yaml file is used for config
 
 ## To DO:
-- [ ] Implement basic logic (Reaction to words and emojis)
+- [X] Implement basic logic (Reaction to words and emojis)
 - [ ] Abstract away what is being reacted to (Reaction files can be changed)
+- [ ] Refactor code to be more legible and extendible
 - [ ] Implement a config file
 
 ## Commands for Development:
