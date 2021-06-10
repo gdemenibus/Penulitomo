@@ -46,5 +46,5 @@ async def on_reaction_add(reaction,user):
     emoji = demoji.findall(str(reaction.emoji))
     if "pleading face" in emoji.values():
         rehab = get_rehab_role(reaction.message.guild.roles)
-        await reaction.message.author.add_roles(rehab)
+        await user.add_roles(rehab)
 client.run(TOKEN)
