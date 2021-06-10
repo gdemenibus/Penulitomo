@@ -13,6 +13,7 @@ if TOKEN is None:
     exit(1)
 client = discord.Client()
 
+message_amount = 0
 
 @client.event
 async def on_ready():
@@ -33,12 +34,19 @@ def get_rehab_role(roles):
 
 @client.event
 async def on_message(message):
+    global message_amount
+    message_amount = message_amount + 1 
     emoji = demoji.findall(message.content)
     if "pleading face" in emoji.values():
         print("Registered Horniness")
         await message.channel.send("JAIL")
         rehab = get_rehab_role(message.guild.roles)
         await message.author.add_roles(rehab)
+    if message_amount == 100:
+        for x in message.guild.roles:
+            if x.name == "Horny Rehab":
+                for member in x.members:
+                    await member.remove_roles(x)
 
 @client.event
 async def on_reaction_add(reaction,user):
