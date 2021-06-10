@@ -31,7 +31,6 @@ def get_rehab_role(roles):
         if x.name == "Horny Rehab":
             return x
 
-
 @client.event
 async def on_message(message):
     emoji = demoji.findall(message.content)
@@ -41,5 +40,11 @@ async def on_message(message):
         rehab = get_rehab_role(message.guild.roles)
         await message.author.add_roles(rehab)
 
-
+@client.event
+async def on_reaction_add(reaction,user):
+    
+    emoji = demoji.findall(str(reaction.emoji))
+    if "pleading face" in emoji.values():
+        rehab = get_rehab_role(reaction.message.guild.roles)
+        await reaction.message.author.add_roles(rehab)
 client.run(TOKEN)
