@@ -43,6 +43,7 @@ async def on_message(message):
         rehab = get_rehab_role(message.guild.roles)
         await message.author.add_roles(rehab)
     if message_amount == 100:
+        message_amount = 0
         for x in message.guild.roles:
             if x.name == "Horny Rehab":
                 for member in x.members:
