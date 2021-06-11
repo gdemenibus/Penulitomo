@@ -11,7 +11,9 @@ GUILD = os.getenv("DISCORD_GUILD")
 if TOKEN is None:
     print("Token Missing")
     exit(1)
-client = discord.Client()
+intent = discord.Intents.default()
+intent.members = True
+client = discord.Client(intents = intent)
 
 message_amount = 0
 
@@ -42,12 +44,13 @@ async def on_message(message):
         await message.channel.send(message.author.mention + ", you're going straight to jail" )
         rehab = get_rehab_role(message.guild.roles)
         await message.author.add_roles(rehab)
-    if message_amount == 1:
+    if message_amount == 100:
+        guild = client.get_guild(message.guild.id)
         message_amount = 0
-        for x in message.guild.roles:
+        for x in guild.roles:
             if x.name == "Horny Rehab":
                 for member in x.members:
-                    await member.remove_roles(*x)
+                    await member.remove_roles(x)
 
 @client.event
 async def on_reaction_add(reaction,user):
