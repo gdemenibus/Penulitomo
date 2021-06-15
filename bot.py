@@ -68,7 +68,9 @@ async def on_message(message):
 
 @client.event
 async def on_reaction_add(reaction, user):
-
+    if reaction.message.guild is None:
+        await reaction.message.channel.send("Penultimo is confused by your reaction. Are you trying to bribe Penultimo?")
+        return
     emoji = demoji.findall(str(reaction.emoji))
     if "pleading face" in emoji.values():
         rehab = get_rehab_role(reaction.message.guild.roles)
