@@ -39,6 +39,9 @@ async def on_message(message):
     global message_amount
     message_amount = message_amount + 1 
     emoji = demoji.findall(message.content)
+    if message.guild is None:
+        await message.channel.send("Penultimo's loyalty is paramount. He does not take any bribes. If you want to bribe El Presidente, send your letters to @Gbus")
+
     if "pleading face" in emoji.values():
         print("Registered Horniness")
         await message.channel.send(message.author.mention + ", you're going straight to jail" )
