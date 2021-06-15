@@ -1,8 +1,10 @@
 # bot.py
 import os
-import discord
+
 import demoji
+import discord
 from dotenv import load_dotenv
+
 load_dotenv()
 
 
@@ -13,9 +15,10 @@ if TOKEN is None:
     exit(1)
 intent = discord.Intents.default()
 intent.members = True
-client = discord.Client(intents = intent)
+client = discord.Client(intents=intent)
 
 message_amount = 0
+
 
 @client.event
 async def on_ready():
@@ -34,19 +37,24 @@ def get_rehab_role(roles):
         if x.name == "Horny Rehab":
             return x
 
+
 @client.event
 async def on_message(message):
     if message.author == client.user:
         return
     global message_amount
-    message_amount = message_amount + 1 
+    message_amount = message_amount + 1
     emoji = demoji.findall(message.content)
     if message.guild is None:
-        await message.channel.send("Penultimo's loyalty is paramount. He does not take any bribes. If you want to bribe El Presidente, send your letters to @Gbus")
+        await message.channel.send(
+            "Penultimo's loyalty is paramount. He does not take any bribes. If you want to bribe El Presidente, send your letters to @Gbus"
+        )
         return
     if "pleading face" in emoji.values():
         print("Registered Horniness")
-        await message.channel.send(message.author.mention + ", you're going straight to jail" )
+        await message.channel.send(
+            message.author.mention + ", you're going straight to jail"
+        )
         rehab = get_rehab_role(message.guild.roles)
         await message.author.add_roles(rehab)
     if message_amount == 100:
@@ -57,11 +65,14 @@ async def on_message(message):
                 for member in x.members:
                     await member.remove_roles(x)
 
+
 @client.event
-async def on_reaction_add(reaction,user):
-    
+async def on_reaction_add(reaction, user):
+
     emoji = demoji.findall(str(reaction.emoji))
     if "pleading face" in emoji.values():
         rehab = get_rehab_role(reaction.message.guild.roles)
         await user.add_roles(rehab)
+
+
 client.run(TOKEN)
