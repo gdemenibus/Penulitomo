@@ -38,12 +38,7 @@ def get_rehab_role(roles):
             return x
 
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-    global message_amount
-    message_amount = message_amount + 1
+async def emoji_check(message):
     emoji = demoji.findall(message.content)
     if message.guild is None:
         await message.channel.send(
@@ -51,12 +46,16 @@ async def on_message(message):
         )
         return
     if "pleading face" in emoji.values():
-        print("Registered Horniness")
         await message.channel.send(
             message.author.mention + ", you're going straight to jail"
         )
         rehab = get_rehab_role(message.guild.roles)
         await message.author.add_roles(rehab)
+
+
+async def message_count(message):
+    global message_amount
+    message_amount = message_amount + 1
     if message_amount == 100:
         guild = client.get_guild(message.guild.id)
         message_amount = 0
@@ -67,9 +66,19 @@ async def on_message(message):
 
 
 @client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+    await emoji_check(message)
+    await message_count(message)
+
+
+@client.event
 async def on_reaction_add(reaction, user):
     if reaction.message.guild is None:
-        await reaction.message.channel.send("Penultimo is confused by your reaction. Are you trying to bribe Penultimo?")
+        await reaction.message.channel.send(
+            "Penultimo is confused by your reaction. Are you trying to bribe Penultimo?"
+        )
         return
     emoji = demoji.findall(str(reaction.emoji))
     if "pleading face" in emoji.values():
