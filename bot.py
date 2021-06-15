@@ -36,6 +36,8 @@ def get_rehab_role(roles):
 
 @client.event
 async def on_message(message):
+    if message.author == client.user:
+        return
     global message_amount
     message_amount = message_amount + 1 
     emoji = demoji.findall(message.content)
