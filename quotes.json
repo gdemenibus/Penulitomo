@@ -1,4 +1,23 @@
 [
-	{"phrase": "This is a test phrase", "keywords": ["testing"] }
+	{"phrase": "Now the rebels are always talking about an uprising – as much as anything, their camps are horribly uncomfortable and the dream of fluffy pillows is what keeps their revolutionary zeal stoked. But perhaps we should take a few suitable precautions, just in case…", "keywords": ["rebellion"] },
+	{"phrase": "I have received a message informing us of a secret uprising. Either it's from our man on the inside, or it was sent to the wrong address.", "keywords": ["rebellion", "overthrow", "coup"] },
+	{"phrase": "Now I know we are not to talk about the red envelope, or what it contains, or the lovely skull and bones watermark on the stationary. But you and I both know that this either means we are about to be attacked by the rebels, or that it is Chinese New Year. I shall double check the calendar…", "keywords": ["Chinese new year", "Rebellion", "rebels"] },
+	{"phrase": "Presidente, I do not mean to worry you… but one of our agents handed me the red envelope.", "keywords": ["Red Envelop"] },
+	{"phrase": "There may have been some crossed wires somewhere in the counter-insurgency training. I fear our agents thought their job was to mastermind an insurrection in order to win the trust of the key members of the rebellion. On the plus side, they appear to have been extremely successful! I wonder if it's too late to ask them to stand down…", "keywords": ["testing"] },
+	{"phrase": "Did we ask our spies among the rebels to orchestrate an uprising? No? Oh dear…"
+		, "keywords": ["testing"] },
+	{"phrase": "But we should not underestimate the dangers posed by violent, heavily-armed guerrillas, even if they were trained by correspondence course. Please wear the bullet-proof wig for a few days, Presidente."
+		, "keywords": ["testing"] },
+	{"phrase": "There is a rebellion, Presidente! If these rebels want your attention so badly, they should make an appointment like everybody else..."
+		, "keywords": ["testing"] },
+	{"phrase": "You are the real deal, Presidente! Yes, the real deal! All those other Presidentes are just imitations. I would ask you to stand up, but that would be presumptuous, so may I have your permission to dance a jig of triumph? No? Well, I will dance in my heart for you anyway."
+		, "keywords": ["testing"] },
+	{"phrase": "This is a test phrase", "keywords": ["testing"] },
+	{"phrase": "This is a test phrase", "keywords": ["testing"] },
+	{"phrase": "This is a test phrase", "keywords": ["testing"] },
+
+	{"phrase": "I have here an official statement from the Palace saying 'Don't mention how close the election was'… errr… yes, our neighbor's election was extremely close!"
+		, "keywords": ["election", "voting"] }
+
 ]
 	

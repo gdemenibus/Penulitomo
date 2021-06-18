@@ -3,18 +3,35 @@ import os
 import json
 import demoji
 import discord
+import random
 from dotenv import load_dotenv
 
 
 
 class Penultimo(discord.Client):    
-    def __init__(self, guild):
+    def __init__(self, guild, quotes):
         intent = discord.Intents.default()
         intent.members = True
         super().__init__(intents = intent)
         self.guild = guild
         self.message_amount = 0
+        self.quotes = quotes
  
+# Function for getting voicelines
+    def get_quote(self, keyword = None):
+        if keyword is None:
+            return random.choice(self.quotes)["phrase"]
+        else:    
+            print("Functionality not made yet. Please pay more taxes")             
+
+    async def on_self_mention(self, message):
+        await message.reply(self.get_quote())
+# Function to be called on mention
+    async def check_mention(self, message):
+        if self.user in  message.mentions:
+           await self.on_self_mention(message)
+
+
     async def on_ready(self):
         print(f"{self.user} has connected to Discord!")
         for guild in self.guilds:
@@ -61,6 +78,7 @@ class Penultimo(discord.Client):
     async def on_message(self, message):
         if message.author == self.user:
             return
+        await self.check_mention(message)
         await self.emoji_check(message)
         await self.message_count(message)
 
@@ -88,7 +106,7 @@ def main():
     if TOKEN is None:
         print("Token Missing")
         exit(1)
-    penultimo = Penultimo(TOKEN)
+    penultimo = Penultimo(TOKEN, quotes_json)
     penultimo.run(TOKEN)
 
 
