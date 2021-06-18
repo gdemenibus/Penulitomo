@@ -8,15 +8,15 @@
 "But we should not underestimate the dangers posed by violent, heavily-armed guerrillas, even if they were trained by correspondence course. Please wear the bullet-proof wig for a few days, Presidente."
 "There is a rebellion, Presidente! If these rebels want your attention so badly, they should make an appointment like everybody else..."
 "You are the real deal, Presidente! Yes, the real deal! All those other Presidentes are just imitations. I would ask you to stand up, but that would be presumptuous, so may I have your permission to dance a jig of triumph? No? Well, I will dance in my heart for you anyway."
-The new robot voting system guarantees the next election will be fair, honest, and in no way at risk from unexpected bugs. What a relief!
-The citizens are demanding elections, Presidente! It seems that they want a choice in how they are ruled! So selfish.
-The election is a landslide, Presidente! The metaphorical kind, not the kind that accidentally reduces the size of the workforce
+"The new robot voting system guarantees the next election will be fair, honest, and in no way at risk from unexpected bugs. What a relief!"
+"The citizens are demanding elections, Presidente! It seems that they want a choice in how they are ruled! So selfish."
+"The election is a landslide, Presidente! The metaphorical kind, not the kind that accidentally reduces the size of the workforce"
 "The citizens are demanding elections, Presidente! I know we did that before, but it seems they want another one! So greedy.<cf><cf>Shall we give them what they want, or shall we make them want what you want? I always want what you want, and you always want what you want... so shouldn't they also want what you want?
 "Presidente, it is time to realize your fondest dream. No, not that one. Tropicoland, Presidente! Your very own theme park!"
 "70%… 80%… 90%… Ping! We have the answer! And it is... 'no'. Oh, bummer! Turns out, Presidente, that people are blinkered, self-justifying egomaniacs irrespective of their education level..."
 "A bad workman blames his tools... but he has to have some tools before he can blame them!"
 "A challenge to your supremacy, Presidente. Outrageous!"
-Thank goodness that your opponent mysteriously failed to appear at the debates in the last days of the election. Food poisoning can be so cruel – although it doesn't usually cause concussions. Anyhow, let us enjoy that justice prevailed in the end.
+"Thank goodness that your opponent mysteriously failed to appear at the debates in the last days of the election. Food poisoning can be so cruel – although it doesn't usually cause concussions. Anyhow, let us enjoy that justice prevailed in the end."
 "But can we trust the citizens to vote correctly? I wouldn't want them to wake up on the day after the election in a state of confused regret. Perhaps we should help them – for their own good?"
 "A full size hypersub requires rather a lot of steel, Presidente. Additionally, the proposed twin-potato fuel cell won't quite power it, so the tech nerds recommend a nuclear reactor, too. There is a worry that the kumquat will be irradiated... but it is a risk we will have to take."
 "A large number of refugees are now heading our way. We could let them in, and show the world your magnanimity, or we could turn them away and show them your firm hand. Or we could build naked mermaids and encourage the refugees to start a new life under the sea. It is totally up to you, Presidente!"
@@ -104,4 +104,4 @@ Thank goodness that your opponent mysteriously failed to appear at the debates i
 "Presidente, I know you always keep your promises, but the citizens today can be very exacting about what counts as a fulfilled promise…"
 "Turn the poverty of your indigenous people into profit by constructing an Ethnic Enclave where they can sell laughable craftworks to gullible tourists."
 "The Family Resort offers the double benefit of giving families a suitable place to stay, and keeping all the screaming kids well away from everyone else."
- 
+
