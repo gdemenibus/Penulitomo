@@ -28,7 +28,8 @@ class Penultimo(discord.Client):
         await message.reply(self.get_quote())
 # Function to be called on mention
     async def check_mention(self, message):
-        if self.user in  message.mentions:
+        role_name = [x.name for x in message.role_mentions]
+        if self.user in  message.mentions or 'Penultimo' in role_name:
            await self.on_self_mention(message)
 
 
