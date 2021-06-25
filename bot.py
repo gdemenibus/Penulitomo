@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 
 
-class Penultimo(discord.Client):    
+class Penultimo(discord.Client):
     def __init__(self, guild, quotes):
         intent = discord.Intents.default()
         intent.members = True
@@ -16,13 +16,13 @@ class Penultimo(discord.Client):
         self.guild = guild
         self.message_amount = 0
         self.quotes = quotes
- 
+
 # Function for getting voicelines
     def get_quote(self, keyword = None):
         if keyword is None:
             return random.choice(self.quotes)["phrase"]
-        else:    
-            print("Functionality not made yet. Please pay more taxes")             
+        else:
+            print("Functionality not made yet. Please pay more taxes")
 
     async def on_self_mention(self, message):
         await message.reply(self.get_quote())
@@ -51,11 +51,11 @@ class Penultimo(discord.Client):
 
     async def custom_naughty(self, message):
         if  ":plead:" in message.content:
-            await message.channel.send("You know what you get "+ message.author.mention + " for Custome emojis? Jail, right away, no trail,no nothing")
+            await message.channel.send("You know what you get "+ message.author.mention + " for using custom emojis? Jail, right away, no trail, no nothing!")
             rehab = self.get_rehab_role(message.guild.roles)
             await message.author.add_roles(rehab)
 
-            
+
     async def emoji_check(self, message):
         emoji = demoji.findall(message.content)
         if message.guild is None:
