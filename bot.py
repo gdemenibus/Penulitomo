@@ -49,7 +49,13 @@ class Penultimo(discord.Client):
             if x.name == "Horny Rehab":
                 return x
 
+    async def custom_naughty(self, message):
+        if  ":plead:" in message.content:
+            await message.channel.send("You know what you get "+ message.author.mention + " for Custome emojis? Jail, right away, no trail,no nothing")
+            rehab = self.get_rehab_role(message.guild.roles)
+            await message.author.add_roles(rehab)
 
+            
     async def emoji_check(self, message):
         emoji = demoji.findall(message.content)
         if message.guild is None:
@@ -77,6 +83,7 @@ class Penultimo(discord.Client):
 
 
     async def on_message(self, message):
+        await self.custom_naughty(message)
         if message.author == self.user:
             return
         await self.check_mention(message)
