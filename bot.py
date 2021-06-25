@@ -93,6 +93,7 @@ class Penultimo(discord.Client):
         if "pleading face" in emoji.values():
             rehab = self.get_rehab_role(reaction.message.guild.roles)
             await user.add_roles(rehab)
+            await reaction.message.add_reaction(str('🚨'))
 
 
 
