@@ -7,7 +7,6 @@ import random
 from dotenv import load_dotenv
 
 
-
 class Penultimo(discord.Client):
     def __init__(self, guild, quotes):
         intent = discord.Intents.default()
@@ -15,7 +14,7 @@ class Penultimo(discord.Client):
         super().__init__(intents = intent)
         self.guild = guild
         self.message_amount = 0
-        self.quotes = quotes
+        self.quotes: list  = quotes
 
 # Function for getting voicelines
     def get_quote(self, keyword = None):
@@ -51,7 +50,7 @@ class Penultimo(discord.Client):
 
     async def custom_naughty(self, message):
         if  ":plead:" in message.content:
-            await message.channel.send("You know what you get "+ message.author.mention + " for using custom emojis? Jail, right away, no trail, no nothing!")
+            await message.channel.send(f"You know what you get {message.author.mention} for using custom emojis? Jail, right away, no trial, no nothing!")
             rehab = self.get_rehab_role(message.guild.roles)
             await message.author.add_roles(rehab)
 
@@ -104,7 +103,6 @@ class Penultimo(discord.Client):
             await reaction.message.add_reaction(str('🚨'))
 
 
-
 def main():
     load_dotenv()
 
@@ -115,13 +113,10 @@ def main():
     if TOKEN is None:
         print("Token Missing")
         exit(1)
-    penultimo = Penultimo(TOKEN, quotes_json)
+    penultimo = Penultimo(GUILD, quotes_json)
     penultimo.run(TOKEN)
 
 
 if __name__ == "__main__":
     main()
-
-
-
 
