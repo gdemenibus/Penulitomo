@@ -15,10 +15,10 @@ class Penultimo(discord.Client):
         super().__init__(intents=intent)
         self.guild = guild
         self.jail = {"Inmate ID": 1}
-        self.quotes = quotes
+        self.quotes: list = quotes
 
-    # Function for getting voicelines
-    def get_quote(self, keyword=None):
+# Function for getting voicelines
+    def get_quote(self, keyword = None):
         if keyword is None:
             return random.choice(self.quotes)["phrase"]
         else:
@@ -55,10 +55,12 @@ class Penultimo(discord.Client):
     async def custom_naughty(self, message):
         if ":plead:" in message.content:
             await message.channel.send(
-                "You know what you get "
-                + message.author.mention
-                + " for Custome emojis? Jail, right away, no trail,no nothing"
+               f"You know what you get "
+                 {message.author.mention}
+                 " for custom  emojis? Jail, right away, no trial, no nothing! "
             )
+        if  ":plead:" in message.content:
+            await message.channel.send(f"You know what you get {message.author.mention} for using custom emojis? Jail, right away, no trial, no nothing!")
             rehab = self.get_rehab_role(message.guild.roles)
             await self.place_in_jail(message.author, rehab)
 
@@ -114,7 +116,6 @@ class Penultimo(discord.Client):
             await self.place_in_jail(user, rehab)
             await reaction.message.add_reaction(str("🚨"))
 
-
 def main():
     load_dotenv()
 
@@ -125,7 +126,7 @@ def main():
     if TOKEN is None:
         print("Token Missing")
         exit(1)
-    penultimo = Penultimo(TOKEN, quotes_json)
+    penultimo = Penultimo(GUILD, quotes_json)
     penultimo.run(TOKEN)
 
 
