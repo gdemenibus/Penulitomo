@@ -9,12 +9,10 @@ if __name__ == "__main__":
     orig = sys.argv[1]
     out = sys.argv[2]
 
-    with open(orig, 'r') as orig_file:
-        with open(out, 'w') as out_file:
+    with open(orig, "r") as orig_file:
+        with open(out, "w") as out_file:
             out_file.write("[\n")
             for line in orig_file.readlines():
                 line = line[1:-2]
-                out_file.write(f"{{ \"phrase\": \"{line}\", \"keywords\": [\"testing\"] }},\n")
+                out_file.write(f'{{ "phrase": "{line}", "keywords": ["testing"] }},\n')
             out_file.write("]")
-
-

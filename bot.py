@@ -1,37 +1,37 @@
 # bot.py
-import os
 import json
+import os
+import random
+
 import demoji
 import discord
-import random
 from dotenv import load_dotenv
 
 
-
-class Penultimo(discord.Client):    
+class Penultimo(discord.Client):
     def __init__(self, guild, quotes):
         intent = discord.Intents.default()
         intent.members = True
-        super().__init__(intents = intent)
+        super().__init__(intents=intent)
         self.guild = guild
-        self.message_amount = 0
+        self.jail = {"Inmate ID": 1}
         self.quotes = quotes
- 
-# Function for getting voicelines
-    def get_quote(self, keyword = None):
+
+    # Function for getting voicelines
+    def get_quote(self, keyword=None):
         if keyword is None:
             return random.choice(self.quotes)["phrase"]
-        else:    
-            print("Functionality not made yet. Please pay more taxes")             
+        else:
+            print("Functionality not made yet. Please pay more taxes")
 
     async def on_self_mention(self, message):
         await message.reply(self.get_quote())
-# Function to be called on mention
+
+    # Function to be called on mention
     async def check_mention(self, message):
         role_name = [x.name for x in message.role_mentions]
-        if self.user in  message.mentions or 'Penultimo' in role_name:
-           await self.on_self_mention(message)
-
+        if self.user in message.mentions or "Penultimo" in role_name:
+            await self.on_self_mention(message)
 
     async def on_ready(self):
         print(f"{self.user} has connected to Discord!")
@@ -43,19 +43,25 @@ class Penultimo(discord.Client):
             f"{guild.name}(id: {guild.id})"
         )
 
-
     def get_rehab_role(self, roles):
         for x in roles:
             if x.name == "Horny Rehab":
                 return x
 
-    async def custom_naughty(self, message):
-        if  ":plead:" in message.content:
-            await message.channel.send("You know what you get "+ message.author.mention + " for Custome emojis? Jail, right away, no trail,no nothing")
-            rehab = self.get_rehab_role(message.guild.roles)
-            await message.author.add_roles(rehab)
+    async def place_in_jail(self, member, role):
+        await member.add_roles(role)
+        self.jail[member.id] = 0
 
-            
+    async def custom_naughty(self, message):
+        if ":plead:" in message.content:
+            await message.channel.send(
+                "You know what you get "
+                + message.author.mention
+                + " for Custome emojis? Jail, right away, no trail,no nothing"
+            )
+            rehab = self.get_rehab_role(message.guild.roles)
+            await self.place_in_jail(message.author, rehab)
+
     async def emoji_check(self, message):
         emoji = demoji.findall(message.content)
         if message.guild is None:
@@ -68,28 +74,31 @@ class Penultimo(discord.Client):
                 message.author.mention + ", you're going straight to jail"
             )
             rehab = self.get_rehab_role(message.guild.roles)
-            await message.author.add_roles(rehab)
+            await self.place_in_jail(message.author, rehab)
 
+    async def release_jail(self, author, message):
+        rehab = self.get_rehab_role(message.guild.roles)
+        await message.reply(
+            "You've served your sentence. I hope I won't see you here again"
+        )
+        await author.remove_roles(rehab)
 
+    # Message count relies on jail only containing people in jail.
     async def message_count(self, message):
-        self.message_amount = self.message_amount + 1
-        if self.message_amount == 100:
-            guild = self.get_guild(message.guild.id)
-            self.message_amount = 0
-            for x in guild.roles:
-                if x.name == "Horny Rehab":
-                    for member in x.members:
-                        await member.remove_roles(x)
-
+        author_id = message.author.id
+        if author_id in self.jail:
+            self.jail[author_id] += 1
+            if self.jail[author_id] >= 100:
+                self.jail.pop(author_id)
+                await self.release_jail(message.author, message)
 
     async def on_message(self, message):
-        await self.custom_naughty(message)
         if message.author == self.user:
             return
         await self.check_mention(message)
+        await self.custom_naughty(message)
         await self.emoji_check(message)
         await self.message_count(message)
-
 
     async def on_reaction_add(self, reaction, user):
         if reaction.message.guild is None:
@@ -100,9 +109,8 @@ class Penultimo(discord.Client):
         emoji = demoji.findall(str(reaction.emoji))
         if "pleading face" in emoji.values():
             rehab = self.get_rehab_role(reaction.message.guild.roles)
-            await user.add_roles(rehab)
-            await reaction.message.add_reaction(str('🚨'))
-
+            await self.place_in_jail(user, rehab)
+            await reaction.message.add_reaction(str("🚨"))
 
 
 def main():
@@ -121,7 +129,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
