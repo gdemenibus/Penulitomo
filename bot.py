@@ -85,6 +85,8 @@ class Penultimo(discord.Client):
 
     # Message count relies on jail only containing people in jail.
     async def message_count(self, message):
+        if message.guild is None:
+            return
         author_id = message.author.id
         if author_id in self.jail:
             self.jail[author_id] += 1
