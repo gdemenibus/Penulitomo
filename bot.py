@@ -56,7 +56,7 @@ class Penultimo(discord.Client):
         if ":plead:" in message.content:
             await message.channel.send(
                f"You know what you get "
-                 {message.author.mention}
+                 + message.author.mention + 
                  " for custom  emojis? Jail, right away, no trial, no nothing! "
             )
         if  ":plead:" in message.content:
