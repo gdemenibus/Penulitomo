@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: penultimo
+  namespace: presidential-paradise
   labels:
     app: penultimo
     keel.sh/policy: force
@@ -22,3 +23,5 @@ spec:
         env:
           - name: DISCORD_TOKEN
             value: CHANGE_ME
+          - name: PYTHONUNBUFFERED
+            value: "1"
