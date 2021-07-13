@@ -51,6 +51,9 @@ class Penultimo(discord.Client):
     async def place_in_jail(self, member, role):
         await member.add_roles(role)
         self.jail[member.id] = 0
+        print(member.display_name + " was sent to jail")
+        print("Jail now has: ")
+        print(self.jail)
 
     async def custom_naughty(self, message):
         if ":plead:" in message.content:
@@ -59,8 +62,7 @@ class Penultimo(discord.Client):
                  + message.author.mention + 
                  " for custom  emojis? Jail, right away, no trial, no nothing! "
             )
-        if  ":plead:" in message.content:
-            await message.channel.send(f"You know what you get {message.author.mention} for using custom emojis? Jail, right away, no trial, no nothing!")
+            print("Registered custom emoji sent by" + message.author.mention)
             rehab = self.get_rehab_role(message.guild.roles)
             await self.place_in_jail(message.author, rehab)
 
@@ -70,11 +72,13 @@ class Penultimo(discord.Client):
             await message.channel.send(
                 "Penultimo's loyalty is paramount. He does not take any bribes. If you want to bribe El Presidente, send your letters to @Gbus"
             )
+            print("Message sent to penultimo on DM by" + message.author.mention)
             return
         if "pleading face" in emoji.values():
             await message.channel.send(
                 message.author.mention + ", you're going straight to jail"
             )
+            print("Emoji Registered sent by " + message.author.display_name)
             rehab = self.get_rehab_role(message.guild.roles)
             await self.place_in_jail(message.author, rehab)
 
@@ -92,13 +96,18 @@ class Penultimo(discord.Client):
         author_id = message.author.id
         if author_id in self.jail:
             self.jail[author_id] += 1
-            if self.jail[author_id] >= 100:
+            if self.jail[author_id] >= 25:
                 self.jail.pop(author_id)
                 await self.release_jail(message.author, message)
 
+    def jail_debug_print(self, message):
+        if "jail debug" in message.content:
+            print(self.jail)
+    
     async def on_message(self, message):
         if message.author == self.user:
             return
+        self.jail_debug_print(message)
         await self.check_mention(message)
         await self.custom_naughty(message)
         await self.emoji_check(message)
@@ -115,7 +124,7 @@ class Penultimo(discord.Client):
             rehab = self.get_rehab_role(reaction.message.guild.roles)
             await self.place_in_jail(user, rehab)
             await reaction.message.add_reaction(str("🚨"))
-
+            print("Reaction logged by " + user.mention)
 def main():
     load_dotenv()
 
