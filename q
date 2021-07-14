@@ -1,19 +1,16 @@
 # bot.py
-import asyncio
 import json
 import os
 import random
-
+import asyncio
 import demoji
 import discord
 from dotenv import load_dotenv
-
 
 def boot(coro):
     task = asyncio.create_task(coro)
     asyncio.get_running_loop().run_until_complete(task)
     return task.result()
-
 
 class Penultimo(discord.Client):
     def __init__(self, guild, quotes):
@@ -21,12 +18,19 @@ class Penultimo(discord.Client):
         intent = discord.Intents.default()
         intent.members = True
         super().__init__(intents=intent)
-        self.jail = {"Inmate ID": 1}
         self.guild = guild
+        self.jail = {"Inmate ID": 1}
         self.quotes: list = quotes
-        # Function for getting voicelines
+        for guild in self.guilds:
+            for role in guild.roles:
+                print(role)
+                if role.name == "Horny Rehab":
+                    for member in role.members:
+                        print(member)
+                        self.jail[member.id] = 0
 
-    def get_quote(self, keyword=None):
+# Function for getting voicelines
+    def get_quote(self, keyword = None):
         if keyword is None:
             return random.choice(self.quotes)["phrase"]
         else:
@@ -50,14 +54,6 @@ class Penultimo(discord.Client):
             f"{self.user} is connected to the following guild: \n"
             f"{guild.name}(id: {guild.id})"
         )
-        for guild in self.guilds:
-            for role in guild.roles:
-                if role.name == "Horny Rehab":
-                    for member in role.members:
-                        if member.id in self.jail:
-                            continue
-                        else:
-                            self.jail[member.id] = 0
 
     def get_rehab_role(self, roles):
         for x in roles:
@@ -74,9 +70,9 @@ class Penultimo(discord.Client):
     async def custom_naughty(self, message):
         if ":plead:" in message.content:
             await message.channel.send(
-                f"You know what you get "
-                + message.author.mention
-                + " for custom  emojis? Jail, right away, no trial, no nothing! "
+               f"You know what you get "
+                 + message.author.mention + 
+                 " for custom  emojis? Jail, right away, no trial, no nothing! "
             )
             print("Registered custom emoji sent by" + message.author.mention)
             rehab = self.get_rehab_role(message.guild.roles)
@@ -119,7 +115,7 @@ class Penultimo(discord.Client):
     def jail_debug_print(self, message):
         if "jail debug" in message.content:
             print(self.jail)
-
+    
     async def on_message(self, message):
         if message.author == self.user:
             return
@@ -141,8 +137,6 @@ class Penultimo(discord.Client):
             await self.place_in_jail(user, rehab)
             await reaction.message.add_reaction(str("🚨"))
             print("Reaction logged by " + user.mention)
-
-
 def main():
     load_dotenv()
 
