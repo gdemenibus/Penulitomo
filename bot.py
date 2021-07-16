@@ -22,6 +22,7 @@ class Penultimo(discord.Client):
         intent.members = True
         super().__init__(intents=intent)
         self.jail = {"Inmate ID": 1}
+        self.criminalRecord = {"Member ID": 1}
         self.guild = guild
         self.quotes: list = quotes
         # Function for getting voicelines
@@ -68,6 +69,10 @@ class Penultimo(discord.Client):
         await member.add_roles(role)
         self.jail[member.id] = 0
         print(member.display_name + " was sent to jail")
+        if member.id in self.criminalRecord:
+            self.criminalRecord[member.id] += 1
+        else:
+            self.criminalRecord[member.id] = 1
         print("Jail now has: ")
         print(self.jail)
 
