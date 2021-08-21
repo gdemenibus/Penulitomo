@@ -124,7 +124,7 @@ class Penultimo(discord.Client):
     async def jail_debug_print(self, message):
         if "jail debug" in message.content:
             print(self.jail)
-            await message.reply(print(self.jail))  
+            await message.reply(self.jail)  
     async def on_message(self, message):
         if message.author == self.user:
             return
