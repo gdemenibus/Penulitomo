@@ -121,14 +121,14 @@ class Penultimo(discord.Client):
                 self.jail.pop(author_id)
                 await self.release_jail(message.author, message)
 
-    def jail_debug_print(self, message):
+    async def jail_debug_print(self, message):
         if "jail debug" in message.content:
             print(self.jail)
-
+            await message.reply(print(self.jail))  
     async def on_message(self, message):
         if message.author == self.user:
             return
-        self.jail_debug_print(message)
+        await self.jail_debug_print(message)
         await self.check_mention(message)
         await self.custom_naughty(message)
         await self.emoji_check(message)
